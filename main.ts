@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import { securedEnv } from './src/config/dotenv';
 import {errorHandler, HttpStatusCode} from './src/middleware/errorHandler.middleware';
 import { authMiddleware } from './src/middleware/auth.middleware';
+import { companyRouter } from './src/routes/company.router';
 
 // const secret:idotEnv = process.env;
 // console.log(process.env);
@@ -15,6 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api/users', userRouter);
+app.use('/api/companies', companyRouter);
 app.use(errorHandler.customErrorHandler);
 
 
