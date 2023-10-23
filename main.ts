@@ -10,6 +10,7 @@ import { authMiddleware } from './src/middleware/auth.middleware';
 import { companyRouter } from './src/routes/company.router';
 import { companyUserRouter } from './src/routes/company_user.router';
 import { roomRouter } from './src/routes/room.router';
+import { paymentMethodRouter } from './src/routes/payment_method.router';
 
 // const secret:idotEnv = process.env;
 // console.log(process.env);
@@ -21,6 +22,7 @@ app.use('/api/users', userRouter);
 app.use('/api/companies', companyRouter);
 app.use('/api/company_user', companyUserRouter);
 app.use('/api/rooms', roomRouter);
+app.use('/api/payment_methods', paymentMethodRouter);
 app.use(errorHandler.customErrorHandler);
 
 
