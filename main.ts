@@ -12,6 +12,7 @@ import { companyUserRouter } from './src/routes/company_user.router';
 import { roomRouter } from './src/routes/room.router';
 import { paymentMethodRouter } from './src/routes/payment_method.router';
 import { classModalityRouter } from './src/routes/class_modality.router';
+import { instructorRouter } from './src/routes/instructor.router';
 
 // const secret:idotEnv = process.env;
 // console.log(process.env);
@@ -25,6 +26,7 @@ app.use('/api/company_user', companyUserRouter);
 app.use('/api/rooms', roomRouter);
 app.use('/api/payment_methods', paymentMethodRouter);
 app.use('/api/class_modalities', classModalityRouter);
+app.use('/api/instructors', instructorRouter);
 app.use(errorHandler.customErrorHandler);
 
 
