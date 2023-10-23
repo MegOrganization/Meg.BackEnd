@@ -9,6 +9,7 @@ import {errorHandler, HttpStatusCode} from './src/middleware/errorHandler.middle
 import { authMiddleware } from './src/middleware/auth.middleware';
 import { companyRouter } from './src/routes/company.router';
 import { companyUserRouter } from './src/routes/company_user.router';
+import { roomRouter } from './src/routes/room.router';
 
 // const secret:idotEnv = process.env;
 // console.log(process.env);
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use('/api/users', userRouter);
 app.use('/api/companies', companyRouter);
 app.use('/api/company_user', companyUserRouter);
+app.use('/api/rooms', roomRouter);
 app.use(errorHandler.customErrorHandler);
 
 
