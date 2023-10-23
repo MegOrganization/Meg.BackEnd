@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { securedEnv } from '../config/dotenv';
-import { IUser, EGender } from '../models/user.model';
+import { IUser, EType } from '../models/user.model';
 
 const secret = securedEnv.jwtSecret || "SECRET";
 
@@ -8,7 +8,8 @@ const secret = securedEnv.jwtSecret || "SECRET";
 class AuthMiddleware{
     constructor(){}
     signJWT(){
-        const u:IUser = {id:17, name:"Victor Lucas Mazzotti", mail:"mazzotti.vlm@gmail.com", active: true, gender: EGender.Male}
+        const u:IUser = {id:17, name:"Leandro Lourenço Miranda", email:"leandromiranda87@gmail.com", phone_number: "19981404269", password: "pass", 
+                         type: EType.Admin, active: true}
         const token = jwt.sign(u, secret, {expiresIn: '5m'});
         console.log(token);
         return token;

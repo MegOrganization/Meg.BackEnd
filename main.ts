@@ -8,6 +8,7 @@ import { securedEnv } from './src/config/dotenv';
 import {errorHandler, HttpStatusCode} from './src/middleware/errorHandler.middleware';
 import { authMiddleware } from './src/middleware/auth.middleware';
 import { companyRouter } from './src/routes/company.router';
+import { companyUserRouter } from './src/routes/company_user.router';
 
 // const secret:idotEnv = process.env;
 // console.log(process.env);
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/api/users', userRouter);
 app.use('/api/companies', companyRouter);
+app.use('/api/company_user', companyUserRouter);
 app.use(errorHandler.customErrorHandler);
 
 

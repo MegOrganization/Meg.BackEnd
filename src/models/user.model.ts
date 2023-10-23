@@ -1,16 +1,18 @@
 import db from './db';
 
-enum EGender {
-    "Male" = "Male",
-    "Female" = "Female"
+enum EType {
+    "Admin" = "Admin",
+    "Professor" = "Professor",
+    "Student" = "Student"
 }
 
 interface IUser {
     id: number;
     name: string;
-    mail: string;
-    phone?: string;
-    gender: EGender;
+    email: string;
+    phone_number?: string;
+    password: string;
+    type: EType;
     active: boolean;
 }
 
@@ -23,7 +25,8 @@ class UserModel {
     }
 
     async createUser(user: Omit<IUser, 'id'>): Promise<null> {
-        await db.none('INSERT INTO users (name, mail, phone, gender, active) VALUES ($1, $2, $3, $4, $5)', [user.name, user.mail, user.phone, user.gender, user.active]);
+        await db.none('INSERT INTO users (name, email, phone_number, password, type, active) VALUES ($1, $2, $3, $4, $5, $6)', 
+        [user.name, user.email, user.phone_number, user.password, user.type, user.active]);
         return null;
     }
 
@@ -35,4 +38,4 @@ class UserModel {
 
 const userModel = new UserModel();
 
-export { userModel, IUser, EGender };
+export { userModel, IUser, EType };
