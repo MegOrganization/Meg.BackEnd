@@ -10,8 +10,8 @@ interface ICompany {
     name: string;
     document_number?: string;
     document_type?: EDocumentType;
-    logo?: string;
-    colors?: string;
+    logo_path?: string;
+    colors?: JSON;
     schema_name: string;
     active: boolean;
 }
@@ -25,8 +25,8 @@ class CompanyModel {
     }
 
     async createCompany(company: Omit<ICompany, 'id'>): Promise<null> {
-        await db.none('INSERT INTO companies (name, document_number, document_type, logo, colors, schema_name, active) VALUES ($1, $2, $3, $4, $5, $6, $7)', 
-        [company.name, company.document_number, company.document_type, company.logo, company.colors, company.schema_name, company.active]);
+        await db.none('INSERT INTO companies (name, document_number, document_type, logo_path, colors, schema_name, active) VALUES ($1, $2, $3, $4, $5, $6, $7)', 
+        [company.name, company.document_number, company.document_type, company.logo_path, company.colors, company.schema_name, company.active]);
         return null;
     }
 
