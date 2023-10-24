@@ -1,15 +1,4 @@
 import db from './db';
-
-/*
-CREATE TABLE IF NOT EXISTS payment_methods (
-	id serial PRIMARY KEY,
-	name VARCHAR (250) UNIQUE NOT NULL,
-	percentage INTEGER DEFAULT 0 NOT NULL,
-	active BOOLEAN NOT NULL,
-	CONSTRAINT percentage_ck CHECK (percentage >= 0)
-);
-*/
-
 interface IPaymentMethod {
     id: number;
     name: string;
