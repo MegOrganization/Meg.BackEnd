@@ -1,9 +1,9 @@
 import db from './db';
 
 enum EType {
-    "Admin" = "Admin",
+    "Administrador" = "Administrador",
     "Professor" = "Professor",
-    "Student" = "Student"
+    "Aluno" = "Aluno"
 }
 
 interface IUser {
