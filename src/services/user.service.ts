@@ -14,7 +14,6 @@ class UserService {
     }
 
     async deleteUser(userId: number): Promise<null> {
-        // You may want to add additional logic or checks here before deleting a user.
         return userModel.deleteUser({ id: userId });
     }
 }

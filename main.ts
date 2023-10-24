@@ -5,7 +5,7 @@ import { userRouter } from './src/routes/user.router';
 import {Request, Response} from 'express';
 import cookieParser from 'cookie-parser';
 import { securedEnv } from './src/config/dotenv';
-import {errorHandler, HttpStatusCode} from './src/middleware/errorHandler.middleware';
+import { errorHandler, HttpStatusCode} from './src/middleware/errorHandler.middleware';
 import { authMiddleware } from './src/middleware/auth.middleware';
 import { companyRouter } from './src/routes/company.router';
 import { companyUserRouter } from './src/routes/company_user.router';
@@ -13,23 +13,23 @@ import { roomRouter } from './src/routes/room.router';
 import { paymentMethodRouter } from './src/routes/payment_method.router';
 import { classModalityRouter } from './src/routes/class_modality.router';
 import { instructorRouter } from './src/routes/instructor.router';
+import { templateMiddleware } from './src/middleware/template.middleware';
 
 // const secret:idotEnv = process.env;
 // console.log(process.env);
 console.log(securedEnv.jwtSecret);
 const app = express();
 app.use(express.json());
-app.use(cookieParser());
-app.use('/api/users', userRouter);
+app.use(cookieParser("SECRET"));
+app.use('/api/users', templateMiddleware.test, userRouter);
 app.use('/api/companies', companyRouter);
 app.use('/api/company_user', companyUserRouter);
 app.use('/api/rooms', roomRouter);
 app.use('/api/payment_methods', paymentMethodRouter);
 app.use('/api/class_modalities', classModalityRouter);
 app.use('/api/instructors', instructorRouter);
+
 app.use(errorHandler.customErrorHandler);
-
-
 app.get('/', (req:Request, res:Response) => {
     res.cookie("teste","valor do teste",{httpOnly: true})
     res.send({message: 'Success'})
