@@ -1,11 +1,17 @@
 import dotenv from "dotenv";
 // import {ProcessEnv} from '@types/dotenv';
 
-interface idotEnv extends NodeJS.ProcessEnv{
-  jwtSecret?: string
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      JWTSecret: string,
+      CookieSecret: string
+    }
+  }
 }
 
-const securedEnv:idotEnv = process.env;
+const securedEnv:NodeJS.ProcessEnv = process.env;
 dotenv.config();
 
 
