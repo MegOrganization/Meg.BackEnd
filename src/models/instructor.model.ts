@@ -5,12 +5,6 @@ enum EGender {
     "Feminino" = "Feminino"
 }
 
-enum ERegionalCouncil {
-    "Crefito" = "Crefito",
-    "Cofito" = "Cofito",
-    "Cref" = "Cref"
-}
-
 interface IInstructor {
     id: number;
     name: string;
@@ -19,7 +13,7 @@ interface IInstructor {
     email?: string;
     phone_number?: string;
     cpf?: string;
-    regional_council_code?: ERegionalCouncil;
+    regional_council_id?: number;
     regional_council_number?: string;
     trial_class_paid: boolean;
     capacity: number;
@@ -35,8 +29,8 @@ class InstructorModel {
     }
 
     async createInstructor(instructor: Omit<IInstructor, 'id'>): Promise<null> {
-        await db.none('INSERT INTO instructors (name, birth_date, gender, email, phone_number, cpf, regional_council_code, regional_council_number, trial_class_paid, capacity, active) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', 
-        [instructor.name, instructor.birth_date, instructor.gender, instructor.email, instructor.phone_number, instructor.cpf, instructor.regional_council_code, 
+        await db.none('INSERT INTO instructors (name, birth_date, gender, email, phone_number, cpf, regional_council_id, regional_council_number, trial_class_paid, capacity, active) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', 
+        [instructor.name, instructor.birth_date, instructor.gender, instructor.email, instructor.phone_number, instructor.cpf, instructor.regional_council_id, 
             instructor.regional_council_number, instructor.trial_class_paid, instructor.capacity, instructor.active]);
         return null;
     }
@@ -49,4 +43,4 @@ class InstructorModel {
 
 const instructorModel = new InstructorModel();
 
-export { instructorModel, IInstructor, EGender, ERegionalCouncil };
+export { instructorModel, IInstructor, EGender };
