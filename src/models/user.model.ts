@@ -1,4 +1,5 @@
 import db from './db';
+import { DTOServiceReturn } from '../services/user.service';
 
 enum EType {
     "Administrador" = "Administrador",
@@ -24,15 +25,15 @@ class UserModel {
         return users as IUser[];
     }
 
-    async createUser(user: Omit<IUser, 'id'>): Promise<null> {
+    async createUser(user: Omit<IUser, 'id'>): Promise<DTOServiceReturn> {
         await db.none('INSERT INTO users (name, email, phone_number, password, type, active) VALUES ($1, $2, $3, $4, $5, $6)', 
         [user.name, user.email, user.phone_number, user.password, user.type, user.active]);
-        return null;
+        return {message: 'OK'};
     }
 
-    async deleteUser(user: Pick<IUser, 'id'>): Promise<null> {
+    async deleteUser(user: Pick<IUser, 'id'>): Promise<DTOServiceReturn> {
         await db.none('DELETE FROM users WHERE id = $1', user.id);
-        return null;
+        return {message: 'OK'};
     }
 }
 

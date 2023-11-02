@@ -21,7 +21,7 @@ console.log(securedEnv.jwtSecret);
 const app = express();
 app.use(express.json());
 app.use(cookieParser("SECRET"));
-app.use('/api/users', templateMiddleware.test, userRouter);
+app.use('/api/users', userRouter);
 app.use('/api/companies', companyRouter);
 app.use('/api/company_user', companyUserRouter);
 app.use('/api/rooms', roomRouter);
