@@ -2,17 +2,18 @@ import db from './db';
 import { IUser } from './user.model';
 import { userService } from '../services/user.service';
 
+
 interface IAuth{
     mail: string,
     password: string
 }
 
 
-class AuthModel {
+class LoginModel {
     constructor(){}
 
-    async signIn(){
-
+    async userExists(){
+        
     }
 
     async signUp(user: Omit<IUser,"id">){
@@ -31,3 +32,5 @@ class AuthModel {
     }
 
 }
+
+export {LoginModel, IAuth}
